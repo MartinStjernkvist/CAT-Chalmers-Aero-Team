@@ -106,13 +106,13 @@ class ReportParser:
         
         # Remove IPR question prompts
         content = re.sub(r'^\s*What problems am I encountering\?\s*$', '', content, flags=re.MULTILINE)
-        content = re.sub(r'^\s*What\'s your plan moving forward\?\s*$', '', content, flags=re.MULTILINE)
+        content = re.sub(r"^\s*What['’]s your plan moving forward\?\s*$", '', content, flags=re.MULTILINE)
         content = re.sub(r'^\s*What have I achieved this week\?\s*$', '', content, flags=re.MULTILINE)
         
         # Remove SPR question prompts
         content = re.sub(r'^\s*What has the sub-team achieved this week\?\s*$', '', content, flags=re.MULTILINE)
         content = re.sub(r'^\s*What problems are we encountering\?\s*$', '', content, flags=re.MULTILINE)
-        content = re.sub(r'^\s*What\'s the plan moving forward\?\s*$', '', content, flags=re.MULTILINE)
+        content = re.sub(r"^\s*What['’]s the plan moving forward\?\s*$", '', content, flags=re.MULTILINE)
         
         # Remove other common template prompts
         content = re.sub(r'^\s*Have I learnt any valuable lessons\?\s*$', '', content, flags=re.MULTILINE)

@@ -2,16 +2,12 @@
 
 ## [00] Hugo Modin Asklid | PR & Org
 
-What’s your plan moving forward?
-
 Keep in contact with the PR Manager from KTH.
 Send out sponsorship letters.
 
 ---
 
 ## [01] Marcin Kryger | Components
-
-What’s your plan moving forward?
 
 Coordinate with manufacturing
 
@@ -20,8 +16,6 @@ Host a joint meeting with the manufacturing subgroup
 ---
 
 ## [02] Martin Stjernkvist | -
-
-What’s your plan moving forward?
 
 CAT Handbook
 Document team activities and team structure in a handbook
