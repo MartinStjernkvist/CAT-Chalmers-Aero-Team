@@ -5,6 +5,7 @@ from typing import Dict, List, Optional, Tuple
 
 from parser_v2 import ReportParser
 
+script_dir = Path(__file__).parent
 
 class SubTeamReports:
     """Manages Sub-team Progress Reports (SPR) for a specific week"""
@@ -162,7 +163,10 @@ class SubTeamReports:
             print("✗ No reports to compile")
             return None
 
-        output_dir = self.folder_path / str(self.week_number)
+        # output_dir = self.folder_path / str(self.week_number)
+        # output_dir.mkdir(exist_ok=True)
+        # output_file = output_dir / f"Compiled_SPR_W{self.week_number:02d}.md"
+        output_dir = script_dir / str(self.week_number)
         output_dir.mkdir(exist_ok=True)
         output_file = output_dir / f"Compiled_SPR_W{self.week_number:02d}.md"
 
@@ -196,7 +200,10 @@ class SubTeamReports:
             print("✗ No reports to compile")
             return None
 
-        output_dir = self.folder_path / str(self.week_number)
+        # output_dir = self.folder_path / str(self.week_number)
+        # output_dir.mkdir(exist_ok=True)
+        # output_file = output_dir / f"SPR_{section_name.title()}_W{self.week_number:02d}.md"
+        output_dir = script_dir / str(self.week_number)
         output_dir.mkdir(exist_ok=True)
         output_file = output_dir / f"SPR_{section_name.title()}_W{self.week_number:02d}.md"
 

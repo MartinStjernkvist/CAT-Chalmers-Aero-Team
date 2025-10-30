@@ -44,3 +44,4 @@ spr.get_team_report('COMPONENTS')
 # spr.get_team_report('AVIONICS & ELECTRONICS')
 # spr.get_team_report('PR & ORGANIZATION')
 # spr.get_team_report('TESTBED')
+#%%
