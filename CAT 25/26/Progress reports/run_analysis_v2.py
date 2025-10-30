@@ -9,10 +9,9 @@ from typing import Dict, List, Optional, Tuple
 from SPR_v2 import *
 from IPR_v2 import *
 
-#%%
-
 week_number = 42
-    
+
+#%%
 print("\n" + "=" * 80 + "\n" + "INDIVIDUAL PROGRESS REPORTS" + "\n" + "=" * 80)
 
 ipr = IndividualReports(week_number)
@@ -24,10 +23,12 @@ ipr.compile_problems()
 ipr.compile_plans() 
     
 #%%
-ipr.get_individual_report(2)
+individual_index = 0
+ipr.get_individual_report(individual_index)
 
 #%%
 print("\n" + "=" * 80 + "\n" + "SUB-TEAM PROGRESS REPORTS" + "\n" + "=" * 80)
+
 spr = SubTeamReports(week_number)
 spr.select_folder()
 spr.list_teams()

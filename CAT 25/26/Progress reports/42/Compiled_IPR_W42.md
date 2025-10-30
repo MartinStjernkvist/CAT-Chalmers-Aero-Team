@@ -58,7 +58,7 @@ Lager 157 t-shirts: https://www.lager157.com/sv-se/article/t-shirt-casper?attr1_
 **Sub-team:** Components  
 **Main Task:** Manager for tail  
 
-W42
+w.42
 IPR [Marcin Kryger] W42
 Individual Progress Report - IPR check
 Sub-team (current): Components
