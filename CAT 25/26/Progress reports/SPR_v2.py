@@ -57,7 +57,6 @@ class SubTeamReports:
             if file.name.startswith('~$'):
                 continue
 
-            # Extract team name from filename
             match = name_pattern.search(file.stem)
             if not match:
                 print(f"⚠ Skipping file with unexpected name: {file.name}")
@@ -66,13 +65,10 @@ class SubTeamReports:
             team_name = match.group(1).strip()
 
             try:
-                # Read the document
                 text = ReportParser.read_docx(file)
                 
-                # Split into weeks
                 weeks = ReportParser.split_by_weeks(text)
                 
-                # Get the requested week
                 if self.week_number not in weeks:
                     print(f"⚠ Week {self.week_number} not found in {file.name}")
                     print(f"   Available weeks: {sorted(weeks.keys())}")
@@ -80,7 +76,6 @@ class SubTeamReports:
                 
                 week_content = weeks[self.week_number]
                 
-                # Extract metadata (for SPR, this would be team members' names)
                 metadata = {}
                 names_match = re.search(
                     r'Name\(s\)\s*:\s*(.+?)(?:\n|$)',
@@ -163,9 +158,6 @@ class SubTeamReports:
             print("✗ No reports to compile")
             return None
 
-        # output_dir = self.folder_path / str(self.week_number)
-        # output_dir.mkdir(exist_ok=True)
-        # output_file = output_dir / f"Compiled_SPR_W{self.week_number:02d}.md"
         output_dir = script_dir / str(self.week_number)
         output_dir.mkdir(exist_ok=True)
         output_file = output_dir / f"Compiled_SPR_W{self.week_number:02d}.md"
@@ -200,9 +192,6 @@ class SubTeamReports:
             print("✗ No reports to compile")
             return None
 
-        # output_dir = self.folder_path / str(self.week_number)
-        # output_dir.mkdir(exist_ok=True)
-        # output_file = output_dir / f"SPR_{section_name.title()}_W{self.week_number:02d}.md"
         output_dir = script_dir / str(self.week_number)
         output_dir.mkdir(exist_ok=True)
         output_file = output_dir / f"SPR_{section_name.title()}_W{self.week_number:02d}.md"

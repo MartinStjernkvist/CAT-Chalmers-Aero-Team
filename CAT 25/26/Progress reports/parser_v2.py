@@ -13,7 +13,6 @@ class ReportParser:
             doc = Document(file_path)
             paragraphs = [para.text for para in doc.paragraphs]
             
-            # Also read text from tables
             for table in doc.tables:
                 for row in table.rows:
                     for cell in row.cells:
@@ -98,23 +97,14 @@ class ReportParser:
         end = next_section if next_section else len(text)
         content = text[start:end].strip()
         
-        # Clean up content
         content = re.sub(r'\n{3,}', '\n\n', content)
-        
-        # Remove subsection labels
+    
         content = re.sub(r'^\s*(General|Completed tasks|Specific tasks)\s*$', '', content, flags=re.MULTILINE)
-        
-        # Remove IPR question prompts
         content = re.sub(r'^\s*What problems am I encountering\?\s*$', '', content, flags=re.MULTILINE)
-        content = re.sub(r"^\s*What['’]s your plan moving forward\?\s*$", '', content, flags=re.MULTILINE)
         content = re.sub(r'^\s*What have I achieved this week\?\s*$', '', content, flags=re.MULTILINE)
-        
-        # Remove SPR question prompts
         content = re.sub(r'^\s*What has the sub-team achieved this week\?\s*$', '', content, flags=re.MULTILINE)
         content = re.sub(r'^\s*What problems are we encountering\?\s*$', '', content, flags=re.MULTILINE)
-        content = re.sub(r"^\s*What['’]s the plan moving forward\?\s*$", '', content, flags=re.MULTILINE)
-        
-        # Remove other common template prompts
+        content = re.sub(r"^.*plan moving forward.*$\n?", "", content, flags=re.IGNORECASE | re.MULTILINE)
         content = re.sub(r'^\s*Have I learnt any valuable lessons\?\s*$', '', content, flags=re.MULTILINE)
         content = re.sub(r'^\s*Youtube / Literature / Websites / Documents\s*$', '', content, flags=re.MULTILINE)
         content = re.sub(r'^\s*Links to documents or contributions to reports\s*$', '', content, flags=re.MULTILINE)
@@ -122,7 +112,6 @@ class ReportParser:
         content = re.sub(r'^\s*Lessons learnt\s*$', '', content, flags=re.MULTILINE)
         content = re.sub(r'^\s*Documented material\s*$', '', content, flags=re.MULTILINE)
         
-        # Clean up excessive newlines again
         content = re.sub(r'\n{3,}', '\n\n', content)
         
         return content.strip()
@@ -132,7 +121,6 @@ class ReportParser:
         """Extract metadata like sub-team and main task"""
         metadata = {}
         
-        # Extract sub-team
         sub_team_match = re.search(
             r'Sub-team\s*\(current\)\s*:\s*(.+?)(?:\n|$)',
             text,
@@ -141,7 +129,6 @@ class ReportParser:
         if sub_team_match:
             metadata['sub_team'] = sub_team_match.group(1).strip()
         
-        # Extract main task
         task_match = re.search(
             r'Main task\s*\(current\)\s*:\s*(.+?)(?:\n|$)',
             text,

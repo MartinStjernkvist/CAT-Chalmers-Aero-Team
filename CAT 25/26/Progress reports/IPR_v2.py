@@ -136,9 +136,6 @@ class IndividualReports:
             print("✗ No reports to compile")
             return None
 
-        # output_dir = self.folder_path / str(self.week_number)
-        # output_dir.mkdir(exist_ok=True)
-        # output_file = output_dir / f"Compiled_IPR_W{self.week_number:02d}.md"
         output_dir = script_dir / str(self.week_number)
         output_dir.mkdir(exist_ok=True)
         output_file = output_dir / f"Compiled_IPR_W{self.week_number:02d}.md"
@@ -175,9 +172,6 @@ class IndividualReports:
             print("✗ No reports to compile")
             return None
 
-        # output_dir = self.folder_path / str(self.week_number)
-        # output_dir.mkdir(exist_ok=True)
-        # output_file = output_dir / f"IPR_{section_name.title()}_W{self.week_number:02d}.md"
         output_dir = script_dir / str(self.week_number)
         output_dir.mkdir(exist_ok=True)
         output_file = output_dir / f"IPR_{section_name.title()}_W{self.week_number:02d}.md"
