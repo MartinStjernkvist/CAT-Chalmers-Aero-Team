@@ -11,7 +11,7 @@
 
 w.43
 IPR [Marcin Kryger] W43
-Individual Progress Report - IPR check
+Individual Progress Report
 Sub-team (current): Components
 Main task (current): Manager for tail
 Spend at least 15 minutes per week filling out this form.

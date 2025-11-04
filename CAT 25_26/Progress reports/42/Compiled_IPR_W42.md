@@ -10,7 +10,7 @@
 **Main Task:** Order merch and t-shirts, send out sponsorship requests  
 
 IPR Hugo Modin Asklid W42
-Individual Progress Report - IPR check
+Individual Progress Report
 Sub-team (current): PR & Org
 Main task (current): Order merch and t-shirts, send out sponsorship requests
 Spend at least 15 minutes per week filling out this form.
@@ -60,7 +60,7 @@ Lager 157 t-shirts: https://www.lager157.com/sv-se/article/t-shirt-casper?attr1_
 
 w.42
 IPR [Marcin Kryger] W42
-Individual Progress Report - IPR check
+Individual Progress Report
 Sub-team (current): Components
 Main task (current): Manager for tail
 Spend at least 15 minutes per week filling out this form.
@@ -108,7 +108,7 @@ None
 
 W42
 IPR [Martin Stjernkvist] W42
-Individual Progress Report - IPR check
+Individual Progress Report
 Sub-team (current): -
 Main task (current): Team Captain
 Spend at least 15 minutes per week filling out this form.
