@@ -9,7 +9,7 @@ from typing import Dict, List, Optional, Tuple
 from SPR_v2 import *
 from IPR_v2 import *
 
-week_number = 42
+week_number = 45
 
 #%%
 print("\n" + "=" * 80 + "\n" + "INDIVIDUAL PROGRESS REPORTS" + "\n" + "=" * 80)
