@@ -1,6 +1,6 @@
 # Compiled Individual Progress Reports - Week 45
 
-**Total members:** 12
+**Total members:** 19
 
 ---
 
@@ -135,7 +135,190 @@ Links to documents or contributions to reports
 
 ---
 
-## [03] Jakob B
+## [03] Felix A
+
+**Sub-team:** Components  
+**Main Task:** Tail  
+
+IPR Felix Alsand W45
+Individual Progress Report
+Sub-team (current): Components
+Main task (current): Tail
+Spend at least 15 minutes per week filling out this form.
+
+Activities
+Progress
+What have I achieved this week?
+General
+I have been learning Fusion, but I am still on a beginners level, and was also able to attend the workshop on Wednesday.
+Completed tasks
+
+Problems
+What problems am I encountering?
+General
+I have not been really sure what our tasks have been, but Gustav has helped out to structure the work.
+
+I am not going to have that much time to spare this study period since I am taking courses at GU and have started the truck driving education I talked about in September. Me and Todd are also having two Expfys labs this study period.
+Specific tasks
+
+Plans
+What’s your plan moving forward?
+General
+I will try to attend the workshops as much as I can, it is a bit unfortunate that the ordinary workshops are on Thursdays since I have boxing training then.
+Specific tasks
+
+
+Documentation
+Learning resources
+Youtube / Literature / Websites / Documents
+I had a course in aerodynamics in high school with a very enthusiastic teacher who was a major in the former Yugoslav air force, he had a great compendium in Swedish and I still have it in printed form, but not the pdf-file that I could share and he has not answered me yet on Messenger.
+Lessons learnt
+Have I learnt any valuable lessons?
+I have refreshed my knowledge of aerodynamics and have gotten more accustomed to Fusion.
+Documented material
+Links to documents or contributions to reports
+
+---
+
+## [04] Gustav T
+
+**Sub-team:** Components  
+**Main Task:** Tail  
+
+W45
+IPR [Gustav T] W45
+Individual Progress Report
+Sub-team (current): Components
+Main task (current): Tail
+Spend at least 15 minutes per week filling out this form.
+
+Activities
+Progress
+What have I achieved this week?
+General
+Specified what goes into designing the second version of the tail (carbon spar + ribs)
+Started doing a proper CAD model
+Completed tasks
+
+Problems
+What problems am I encountering?
+General
+I struggle to build what I want in Fusion. Fusion doesn’t seem to detect edges properly. (I have not really seen this problem in other CAD software.
+I also have a lot going on in my courses right now so I can’t really find enough time the coming week.
+Specific tasks
+
+Plans
+What’s your plan moving forward?
+General
+Write down the plan for the rib/spar design and see if I can split the work between me and the other tail-guys
+Specific tasks
+
+
+Documentation
+Learning resources
+Youtube / Literature / Websites / Documents
+
+Lessons learnt
+Have I learnt any valuable lessons?
+
+Documented material
+Links to documents or contributions to reports
+
+---
+
+## [05] Gustav Wikström
+
+**Sub-team:** Testbed and Avionics/Electronics  
+**Main Task:** Help testbed with electronics  
+
+W45
+IPR [Gustav Wikström] W45
+Individual Progress Report
+Sub-team (current): Testbed and Avionics/Electronics
+Main task (current): Help testbed with electronics
+Spend at least 15 minutes per week filling out this form.
+
+Activities
+Progress
+What have I achieved this week?
+General
+Been sick most of the week, but have been able to get in contact with test bed and suggested a time to meet and talk about the situation thus far. 
+Completed tasks
+
+Problems
+What problems am I encountering?
+General
+Not the fastest communication with the testbed team
+Specific tasks
+
+Plans
+What’s your plan moving forward?
+General
+Help the testbed team with electronics and make the plane flyable 
+Specific tasks
+
+
+Documentation
+Learning resources
+Youtube / Literature / Websites / Documents
+
+Lessons learnt
+Have I learnt any valuable lessons?
+
+Documented material
+Links to documents or contributions to reports
+
+---
+
+## [06] Hugo Modin Asklid
+
+**Sub-team:** PR & Org  
+**Main Task:** Order t-shirts, send out sponsorship requests, recruit new PR members  
+
+W45
+IPR Hugo Modin Asklid W45
+Individual Progress Report
+Sub-team (current): PR & Org
+Main task (current): Order t-shirts, send out sponsorship requests, recruit new PR members
+Spend at least 15 minutes per week filling out this form.
+
+Activities
+Progress
+What have I achieved this week?
+General
+Email conversation regarding t-shirt print offer from Teknologtryck.
+Poster for recruiting new PR members.
+Completed tasks
+Merch print job done and ready to be fetched (thursday lunch w46).
+Problems
+What problems am I encountering?
+General
+A little lack of time in general
+Specific tasks
+
+Plans
+What’s your plan moving forward?
+General
+Send out sponsorship letters.
+Order t-shirts.
+Recruit new PR members.
+Progress update and UAS challenge posts.
+Specific tasks
+
+
+Documentation
+Learning resources
+Youtube / Literature / Websites / Documents
+
+Lessons learnt
+Have I learnt any valuable lessons?
+
+Documented material
+Links to documents or contributions to reports
+
+---
+
+## [07] Jakob B
 
 **Sub-team:** Components  
 **Main Task:** Wings - Structural  
@@ -186,7 +369,7 @@ Links to documents or contributions to reports
 
 ---
 
-## [04] Johan S
+## [08] Johan S
 
 **Sub-team:** Manufacturing  
 **Main Task:** 3D printed molds  
@@ -235,7 +418,7 @@ Links to documents or contributions to reports
 
 ---
 
-## [05] Marcin Kryger
+## [09] Marcin Kryger
 
 **Sub-team:** Components  
 **Main Task:** Manager for tail  
@@ -287,7 +470,7 @@ None
 
 ---
 
-## [06] Martin Stjernkvist
+## [10] Martin Stjernkvist
 
 **Sub-team:** -  
 **Main Task:** Team Captain  
@@ -316,10 +499,14 @@ CAD coordinate system recording
 2025-11-07 15-47-27.mp4
 ‘Challenges’ document
 Listed management challenges in a document, to make a checklist.
+Economics
+Created a ‘budget’ system: BUDGET
+Project plan
+Made a sketch of a project plan for the Concept paper
 Problems
 What problems am I encountering?
 General
-
+Team engagement
 Specific tasks
 
 Plans
@@ -327,8 +514,6 @@ What’s your plan moving forward?
 General
 
 Specific tasks
-Report writing
-Create the project plan.
 
 Documentation
 Learning resources
@@ -343,7 +528,51 @@ WELCOME
 
 ---
 
-## [07] Paula E
+## [11] Noa S
+
+**Sub-team:** Avionics and electronics  
+**Main Task:** Work on the report  
+
+IPR Noa Svanberg W45
+Individual Progress Report
+Sub-team (current): Avionics and electronics
+Main task (current): Work on the report
+Spend at least 15 minutes per week filling out this form.
+
+Activities
+Progress
+What have I achieved this week?
+General
+I have gotten more familiar with the team and our goals. Studied drones and aircraft design
+Completed tasks
+Not fully completed, but started working on the report and a schematic of the drone and its circuits
+Problems
+What problems am I encountering?
+General
+-
+Specific tasks
+-
+Plans
+What’s your plan moving forward?
+General
+Continue studying aircraft design and avionics.
+Specific tasks
+Continue working on the report
+
+
+Documentation
+Learning resources
+Youtube / Literature / Websites / Documents
+Mostly youtube, wikipedia and scientific papers
+Lessons learnt
+Have I learnt any valuable lessons?
+ 
+Documented material
+Links to documents or contributions to reports
+
+---
+
+## [12] Paula E
 
 **Sub-team:** Systems and simulations  
 **Main Task:** Finalizing the dimensioning of tail wing  
@@ -398,7 +627,7 @@ Calculations of the height of tail wing
 
 ---
 
-## [08] Prasshanth V
+## [13] Prasshanth V
 
 **Sub-team:** Components  
 **Main Task:** Wings  
@@ -441,22 +670,66 @@ Links to documents or contributions to reports
 
 ---
 
-## [09] Simon Brask
+## [14] Raaed K
 
-**Sub-team:** Electronics and aviation  
-**Main Task:** Configuring the propeller to meet the required thrust needed for take off.  
+**Sub-team:** Manufacturing  
+**Main Task:** Project Management, Material Sourcing  
 
-IPR [Simon Brask] W45
+IPR [Raaed ] W45
 Individual Progress Report
-Sub-team (current): 
-Electronics and aviation
-Main task (current): 
-Configuring the propeller to meet the required thrust needed for take off. 
+Sub-team (current): Manufacturing	
+Main task (current): Project Management, Material Sourcing
 Spend at least 15 minutes per week filling out this form.
 
 Activities
 Progress
 What have I achieved this week?
+General
+Got the pre-preg from GKN Aerospace.
+Handed out tasks to members in the group.
+Tried out wrapping wings with oracover.
+
+Problems
+What problems am I encountering?
+General
+
+Specific tasks
+Skill issue - Still wrapping my head around the problem of torsion in composite beams. Slowing down script development
+Plans
+What’s your plan moving forward?
+General
+Figure out the development of the script to include torsion, and stress calculations along with the deflection calculations
+Specific tasks
+
+
+Documentation
+Learning resources
+Youtube / Literature / Websites / Documents
+Roarke’s formulas for stress and strain
+Kollar & Pluszik- anisotropic composite beams
+Lessons learnt
+Have I learnt any valuable lessons?
+Don’t procrastinate- we could’ve had the carbon fiber a few weeks ago if I just contacted the guy earlier
+Documented material
+Links to documents or contributions to reports
+
+---
+
+## [15] Raphael V
+
+**Sub-team:** Components  
+**Main Task:** Tail/Wing Internal structure  
+
+IPR [Raphael V.] W45
+Individual Progress Report
+Sub-team (current): Components 
+Main task (current): Tail/Wing Internal structure
+Spend at least 15 minutes per week filling out this form.
+
+Activities
+Progress
+Wk 45:
+Conceptual design for tail and wing done
 General
 
 Completed tasks
@@ -468,7 +741,12 @@ General
 Specific tasks
 
 Plans
-What’s your plan moving forward?
+Wk 46:
+Refine wing simulation for database
+Help with wing manufacturing
+Studies for endplate
+Reports for performance and Stability to validate Avionics and Systems
+Suport the members with Tail and Wing Cad
 General
 
 Specific tasks
@@ -486,7 +764,7 @@ Links to documents or contributions to reports
 
 ---
 
-## [10] Victor P
+## [16] Victor P
 
 **Sub-team:** Components - Tail  
 **Main Task:** Fully parameterize prototype CAD model  
@@ -530,7 +808,44 @@ The early model is found in Fusion 360 under the directory: CAT25-26/UAS Challen
 
 ---
 
-## [11] Yusuf M
+## [17] Wiggo N
+
+**Sub-team:** Components  
+**Main Task:** Design of floor and rear landing gear  
+
+W45
+IPR [Wiggo Nimvall] W45
+Individual Progress Report
+Sub-team (current): Components
+Main task (current): Design of floor and rear landing gear
+
+
+Activities
+Progress
+General
+Measured battery to create a placeholder model in CAD. Measured the current complete assembly to get an idea of the dimensions that will be used later. Helped to create a placeholder for the water container. Talked with manufacturing of how a simple rear landing gear should be constructed, the current design should be revised
+Completed tasks
+Made an incredibly simple floor design so it can be put in the complete assembly to see what space we are working with.   
+Problems
+General
+I have a lot of other school projects that take a lot of time and energy at the moment so haven’t been able to give that much effort into the tasks I have taken on.
+Specific tasks
+Haven’t had time to produce a Rear landing gear V2 that was talked about during the workshop on Wednesday. Informed Marcin (on saturday) about having to complete it during our monday meeting instead. 
+Plans
+General
+Will have to take a step back during next week due to other school projects. Will attend all meetings and workshops and try to get as much done as i can then. 
+Specific tasks
+
+
+Documentation
+Lessons learnt
+User parameters in CAD
+
+Documented material
+
+---
+
+## [18] Yusuf M
 
 **Sub-team:** Manufacturing methods  
 **Main Task:** Manufacturing methods for I-beam between tail and fuselage  
@@ -546,22 +861,28 @@ Spend at least 15 minutes per week filling out this form.
 
 Activities
 Progress
-What have I achieved this week?
+
 General
-
+Completed the woodworkshop courses and can use every machine except the lathe and joiner/planer machine. Will get access to the joiner/planer when the machine is fixed. 
+Completed rapid prototyping course 
+Got assigned my first task
 Completed tasks
-
+Rapid prototyping access
+Woodworkshop access
 Problems
 What problems am I encountering?
 General
-
+No access to composites lab yet which means a can’t begin with cfrp work yet in mt task
+No access to a metal workshop 
 Specific tasks
 
 Plans
 What’s your plan moving forward?
 General
-
+Get access to composites lab
 Specific tasks
+Start looking to how to manufacture wooden i beams
+Research on methods to manufacture cfrp i beams
 
 
 Documentation

@@ -20,7 +20,35 @@ More modular mission script, redoing of basic structure, change into 2D instead 
 
 ---
 
-## [03] Jakob B | Components
+## [03] Felix A | Components
+
+I have been learning Fusion, but I am still on a beginners level, and was also able to attend the workshop on Wednesday.
+
+---
+
+## [04] Gustav T | Components
+
+Specified what goes into designing the second version of the tail (carbon spar + ribs)
+Started doing a proper CAD model
+
+---
+
+## [05] Gustav Wikström | Testbed and Avionics/Electronics
+
+Been sick most of the week, but have been able to get in contact with test bed and suggested a time to meet and talk about the situation thus far.
+
+---
+
+## [06] Hugo Modin Asklid | PR & Org
+
+Email conversation regarding t-shirt print offer from Teknologtryck.
+Poster for recruiting new PR members.
+
+Merch print job done and ready to be fetched (thursday lunch w46).
+
+---
+
+## [07] Jakob B | Components
 
 More work on the CAD model, particularly working more on the sizing for the spar. Looking at what aluminium tubes XP and Fuse has, that we can use as molds for a carbon-fiber spar. Done simple structural analysis in ansys for the wing assembly, to get a feeling for locations of high stress and deflection.
 Went to GKN to get materials.
@@ -31,7 +59,7 @@ Drove to get materials.
 
 ---
 
-## [04] Johan S | Manufacturing
+## [08] Johan S | Manufacturing
 
 Investigate feasibility of 3D printed molds for carbon fibre pre-preg.
 
@@ -39,7 +67,7 @@ FUSE - rapid prototyping course
 
 ---
 
-## [05] Marcin Kryger | Components
+## [09] Marcin Kryger | Components
 
 Learned to create parametric designs
 Assisted in picking up pre-preg from GKN
@@ -51,7 +79,7 @@ Visualized structure concept
 
 ---
 
-## [06] Martin Stjernkvist | -
+## [10] Martin Stjernkvist | -
 
 ‘Welcome’ document
 Started with a ‘Welcome’ document, that should be helpful to integrate new members in the team. 
@@ -65,10 +93,22 @@ CAD coordinate system recording
 2025-11-07 15-47-27.mp4
 ‘Challenges’ document
 Listed management challenges in a document, to make a checklist.
+Economics
+Created a ‘budget’ system: BUDGET
+Project plan
+Made a sketch of a project plan for the Concept paper
 
 ---
 
-## [07] Paula E | Systems and simulations
+## [11] Noa S | Avionics and electronics
+
+I have gotten more familiar with the team and our goals. Studied drones and aircraft design
+
+Not fully completed, but started working on the report and a schematic of the drone and its circuits
+
+---
+
+## [12] Paula E | Systems and simulations
 
 -Sizing of control surfaces for the tail wing (30% if the cord for V1)
 	30% of chord—>0.04m for the V1
@@ -82,17 +122,51 @@ Structurally, this setup is also lighter and easier to build. The tail can attac
 
 ---
 
-## [08] Prasshanth V | Components
+## [13] Prasshanth V | Components
 
 CAD model of the internal structure of the wings and a basic structural analysis.
 
 ---
 
-## [10] Victor P | Components - Tail
+## [14] Raaed K | Manufacturing
+
+Got the pre-preg from GKN Aerospace.
+Handed out tasks to members in the group.
+Tried out wrapping wings with oracover.
+
+---
+
+## [15] Raphael V | Components
+
+Wk 45:
+Conceptual design for tail and wing done
+
+---
+
+## [16] Victor P | Components - Tail
 
 I have made semi-parameterized models and an assembly for the tailbox, horizontal and vertical airfoils. 
 
 Completed an early concept for the airfoils and tailbox.
+
+---
+
+## [17] Wiggo N | Components
+
+Measured battery to create a placeholder model in CAD. Measured the current complete assembly to get an idea of the dimensions that will be used later. Helped to create a placeholder for the water container. Talked with manufacturing of how a simple rear landing gear should be constructed, the current design should be revised
+
+Made an incredibly simple floor design so it can be put in the complete assembly to see what space we are working with.
+
+---
+
+## [18] Yusuf M | Manufacturing methods
+
+Completed the woodworkshop courses and can use every machine except the lathe and joiner/planer machine. Will get access to the joiner/planer when the machine is fixed. 
+Completed rapid prototyping course 
+Got assigned my first task
+
+Rapid prototyping access
+Woodworkshop access
 
 ---
 
