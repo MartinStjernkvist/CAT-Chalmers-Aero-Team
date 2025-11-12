@@ -29,7 +29,7 @@ def parse_name(name):
             result['last_initial'] = last_part
             result['last'] = ''
         else:
-            # Full last name
+            # Full last namey
             result['last'] = last_part
             result['last_initial'] = last_part[0]
     else:

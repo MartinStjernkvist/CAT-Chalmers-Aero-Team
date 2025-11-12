@@ -2,9 +2,9 @@
 import numpy as np
 
 V = 4 * 10**(-3) # m^3
-h = 0.20 # m
+h = 0.15 # m
 
-A_tank = V / h
+# A_tank = V / h
 
 g = 9.81
 
@@ -13,15 +13,17 @@ velocity = 15
 
 t = distance / velocity
 
-Cd = 0.6
+Cd = 0.9
 
-def r(A_tank, h, t):
-    A_outlet = 2 * A_tank * np.sqrt(h) / (t * Cd * np.sqrt(2 * g))
+def d(V, h, t):
+    # A_outlet = A_tank / (g * t) * np.sqrt(2 * g * h)
+    A_outlet = 2 * V / (Cd * t * np.sqrt(2 * g * h)) 
     r = np.sqrt(A_outlet / np.pi)
-    return r
+    d = r * 2
+    return d
 
-radius = r(A_tank, h, t)
-print('radius', radius * 1000, ' mm')
+diameter = d(V, h, t)
+print('diameter', f'{diameter * 1000:.1f}', ' mm')
 #%%
 
 
