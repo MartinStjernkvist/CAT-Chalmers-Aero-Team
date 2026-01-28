@@ -17,12 +17,15 @@ L_D_ratio = 9
 CL_max = 1.8
 CD = 0.05
 
+# wing geometry
 wingspan = 2.5
 chord = 0.345
 
-takeoff_margin = 0.1
-mu = 0.3 # grass and rubber
-l_runway = 20
+# take-off
+takeoff_margin = 0.1 # above stall speed
+mu = 0.3 # damp grass & rubber
+l_runway_straigt = 20
+l_runway_diagonal = np.sqrt(2 * l_runway_straigt**2)
 
 # for g/W method
 thrust_to_weight_takeoff = 0.5
@@ -54,45 +57,52 @@ v_wind = 20 * 0.4
 S = wingspan * chord
 AR = wingspan**2 / S
 
-v_stall = np.sqrt(2 * L / (rho_air * S * CL_max))
-print(f'\nstall speed: \n{v_stall:.2f} m/s')
+def takeoff(l_runway):
 
-v_takeoff = (1 + takeoff_margin) * v_stall
-print(f'\ntake-off speed: \n{v_takeoff:.2f} m/s')
+    v_stall = np.sqrt(2 * L / (rho_air * S * CL_max))
+    print(f'stall speed: \n{v_stall:.2f} m/s')
 
-CL_takeoff = CL_max / (1 + takeoff_margin)**2
+    v_takeoff = (1 + takeoff_margin) * v_stall
+    print(f'\ntake-off speed: \n{v_takeoff:.2f} m/s')
 
-CD_induced = CL_takeoff**2 / (np.pi * AR * e)
-print(f'\ninduced drag coefficient \n{CD_induced:.2f}')
+    CL_takeoff = CL_max / (1 + takeoff_margin)**2
 
-CD_tot = CD + CD_induced
-print(f'\ntotal drag coefficient \n{CD_tot:.2f} N')
+    CD_induced = CL_takeoff**2 / (np.pi * AR * e)
+    print(f'\ninduced drag coefficient \n{CD_induced:.2f}')
 
-D_takeoff = 1/2 * rho_air * v_takeoff**2 * S * CD_tot
-print(f'\ndrag during take-off: \n{D_takeoff:.2f}')
+    CD_tot = CD + CD_induced
+    print(f'\ntotal drag coefficient \n{CD_tot:.2f} N')
 
-F_fric = mu * L
+    D_takeoff = 1/2 * rho_air * v_takeoff**2 * S * CD_tot
+    print(f'\ndrag during take-off: \n{D_takeoff:.2f}')
 
-a_takeoff = v_takeoff**2 / (2 * l_runway)
-print(f'\nacceleration at take-off: \n{a_takeoff:.2f} m/s^2')
+    F_fric = mu * L
 
-F_acc_takeoff = m * a_takeoff
-print(f'\nforce from acceleration at take-off \n{F_acc_takeoff:.2f} N')
+    a_takeoff = v_takeoff**2 / (2 * l_runway)
+    print(f'\nacceleration at take-off: \n{a_takeoff:.2f} m/s^2')
 
-T_takeoff = D_takeoff + F_fric + F_acc_takeoff
-print(f'\nthrust at take-off: \n{T_takeoff:.2f} N')
+    F_acc_takeoff = m * a_takeoff
+    print(f'\nforce from acceleration at take-off \n{F_acc_takeoff:.2f} N')
 
-# T_target = thrust_to_weight_takeoff * L
-# print(f'\nthrust at take-off (calculated with thrust-to-weight ratio): \n{T_target:.2f} N')
+    T_takeoff = D_takeoff + F_fric + F_acc_takeoff
+    print(f'\nthrust at take-off: \n{T_takeoff:.2f} N')
 
-P_out_takeoff = T_takeoff * v_takeoff
-print(f'\npower delivered to air at take-off: \n{P_out_takeoff:.2f} W')
+    # T_target = thrust_to_weight_takeoff * L
+    # print(f'\nthrust at take-off (calculated with thrust-to-weight ratio): \n{T_target:.2f} N')
 
-P_electrical_takeoff = P_out_takeoff / (eta_prop * eta_motor_ESC)
-print(f'\nactual electrical power at take-off: \n{P_electrical_takeoff:.2f} W')
+    P_out_takeoff = T_takeoff * v_takeoff
+    print(f'\npower delivered to air at take-off: \n{P_out_takeoff:.2f} W')
 
-P_g_per_W =  T_takeoff * (1000 / g) / eta_motor_takeoff
-print(f'\nactual electrical power at take-off (g/W method): \n{P_g_per_W:.2f} W')
+    P_electrical_takeoff = P_out_takeoff / (eta_prop * eta_motor_ESC)
+    print(f'\nactual electrical power at take-off: \n{P_electrical_takeoff:.2f} W')
+
+    P_g_per_W =  T_takeoff * (1000 / g) / eta_motor_takeoff
+    print(f'\nactual electrical power at take-off (g/W method): \n{P_g_per_W:.2f} W')
+
+print('='*40 + '\nSTRAIGHT RUNWAY\n'+ '='*40)
+takeoff(l_runway_straigt)
+print('='*40 + '\nDIAGONAL RUNWAY\n' + '='*40)
+takeoff(l_runway_diagonal)
 
 D = L / L_D_ratio
 print(f'\ndrag: \n{D:.2f} N')
@@ -120,11 +130,11 @@ def cruise(v_cruise):
         print('Mission failed')
         
 # Slow case
-print('\nSLOW CASE')
+print('='*40 + '\nSLOW CASE\n' + '='*40)
 v_cruise = v_cruise_slow
 cruise(v_cruise)
 
 # Fast case
-print('\nFAST CASE')
+print('='*40 + '\nFAST CASE\n' + '='*40)
 v_cruise = v_cruise_fast
 cruise(v_cruise)
