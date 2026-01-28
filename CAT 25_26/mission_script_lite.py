@@ -20,9 +20,11 @@ CD = 0.05
 wingspan = 2.5
 chord = 0.345
 
-takeoff_margin = 0.2
+takeoff_margin = 0.1
 mu = 0.3 # grass and rubber
 l_runway = 20
+
+# for g/W method
 thrust_to_weight_takeoff = 0.5
 
 # Battery
