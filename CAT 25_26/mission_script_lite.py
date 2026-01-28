@@ -12,6 +12,7 @@ g = 9.82
 rho_air = 1.225 # kg/m^3
 
 # Lift
+# http://airfoiltools.com/airfoil/details?airfoil=s1223-il
 L = m * g
 L_D_ratio = 9
 CL_max = 1.8
