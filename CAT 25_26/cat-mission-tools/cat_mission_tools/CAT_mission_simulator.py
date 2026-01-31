@@ -1,97 +1,25 @@
-import numpy as np
-import pandas as pd
+# This code is part of the CAT mission tools
+#
+# (C) Copyright Chalmers Aero Team 2026
+# (C) Copyright Petter Miltén 2026
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE.txt file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
+
 import matplotlib.pyplot as plt
+import numpy as np
 from scipy.interpolate import interp1d
 from scipy.optimize import minimize
-from scipy.interpolate import LinearNDInterpolator
 
-# =====================
-# CONSTANTS
-# =====================
-g = 9.81
-rho0 = 1.225
+from cat_mission_tools.aircraft import Aircraft
+from cat_mission_tools.components import Battery, ESC, Motor, Propeller
+from cat_mission_tools.utils import rho0, g
 
-# =====================
-# BATTERY
-# =====================
-class Battery:
-    def __init__(self, capacity_Ah, V_nom, R_internal):
-        self.capacity_As = capacity_Ah * 3600
-        self.V_nom = V_nom
-        self.R = R_internal
-        self.soc = 1.0
-
-    def voltage(self, I):
-        return max(self.V_nom * self.soc - I * self.R, 0.0)
-
-    def update(self, I, dt):
-        self.soc -= (I * dt) / self.capacity_As
-        self.soc = max(self.soc, 0.0)
-
-# =====================
-# ESC
-# =====================
-class ESC:
-    def __init__(self, I_max):
-        self.I_max = I_max
-
-    def limit(self, I):
-        return min(I, self.I_max)
-
-# =====================
-# MOTOR
-# =====================
-class Motor:
-    def __init__(self, Kv, R, I_max, P_max):
-        self.Kv = Kv
-        self.R = R
-        self.I_max = I_max
-        self.P_max = P_max
-        self.Kt = 60 / (2 * np.pi * Kv)
-
-    def torque_current(self, V_batt, omega):
-        V_emf = omega * (60 / (2*np.pi)) / self.Kv
-        I = max((V_batt - V_emf) / self.R, 0.0)
-        I = min(I, self.I_max)
-        Q = self.Kt * I
-        P = Q * omega
-        if P > self.P_max:
-            Q = self.P_max / omega
-            P = self.P_max
-        return Q, I, P
-
-# =====================
-# PROPELLER, 0 alpha approximation
-# =====================
-class Propeller: # Everything you need: https://m-selig.ae.illinois.edu/props/propDB.html
-    def __init__(self, D, CT_func, CQ_func):
-        self.D = D
-        self.CT = CT_func
-        self.CQ = CQ_func
-
-    def forces(self, V, omega, rho):
-        n = omega / (2*np.pi)
-        J = V / (n * self.D + 1e-6)
-        T = self.CT(J) * rho * n**2 * self.D**4
-        Q = self.CQ(J) * rho * n**2 * self.D**5
-        return T, Q
-
-# =====================
-# AIRCRAFT
-# =====================
-class Aircraft:
-    def __init__(self, mass, S, CL_func, CD_func, mu_roll):
-        self.mass = mass
-        self.S = S
-        self.CL = CL_func
-        self.CD = CD_func
-        self.mu = mu_roll
-
-    def lift(self, V, alpha):
-        return 0.5 * rho0 * V**2 * self.S * self.CL(alpha)
-
-    def drag(self, V, alpha):
-        return 0.5 * rho0 * V**2 * self.S * self.CD(alpha)
 
 # =====================
 # SIMULATOR
@@ -130,7 +58,7 @@ class MissionSimulator:
     # =====================
     # TAKEOFF
     # =====================
-    def simulate_takeoff(self, dt, alpha_TO):
+    def simulate_takeoff(self, dt, alpha_TO, full_power=True):
         V, x, t = 0.1, 0.0, 0.0
         W = self.ac.mass * g
         hist = []
@@ -138,7 +66,7 @@ class MissionSimulator:
         while True:
             L = self.ac.lift(V, alpha_TO)
             D = self.ac.drag(V, 2)
-            omega, T, I, P = self.solve_motor_prop(V, full_power=True)
+            omega, T, I, P = self.solve_motor_prop(V, full_power)
 
             F_roll = self.ac.mu * max(W - L, 0)
             a = (T - D - F_roll) / self.ac.mass
@@ -333,21 +261,56 @@ def CD(alpha): # From CFD results extracted 2026-01-15
 
     return interp1d(alpha_deg, CD_data, kind='quadratic', fill_value='extrapolate')(alpha)
 
-def CT(J): # Currently for the apce_19x12 at 2500 RPM, https://m-selig.ae.illinois.edu/props/volume-1/propDB-volume-1.html
+# def CT(J): # Currently for the apce_19x12 at 2500 RPM, https://m-selig.ae.illinois.edu/props/volume-1/propDB-volume-1.html
+#     # advance ratio
+#     J_data = np.array([0.185, 0.210, 0.245, 0.276, 0.306, 0.335, 0.364, 0.399, 0.429, 0.456, 0.481, 0.521, 0.545, 0.576, 0.600, 0.603, 0.642, 0.664, 0.695, 0.723, 0.756])
+#
+#     # corresponding CT values
+#     CT_data = np.array([0.0893, 0.0875, 0.0852, 0.0826, 0.0797, 0.0768, 0.0737, 0.0691, 0.0648, 0.0601, 0.0550, 0.0448, 0.0397, 0.0401, 0.0322, 0.0273, 0.0201, 0.0163, 0.0108, 0.0058, -0.0005])
+#
+#     return interp1d(J_data, CT_data, kind='quadratic', fill_value='extrapolate')(J)
+#
+# def CQ(J): # Currently for the apce_19x12 at 2500 RPM, https://m-selig.ae.illinois.edu/props/volume-1/propDB-volume-1.html
+#     # advance ratio
+#     J_data = np.array([0.185, 0.210, 0.245, 0.276, 0.306, 0.335, 0.364, 0.399, 0.429, 0.456, 0.481, 0.521, 0.545, 0.576, 0.600, 0.603, 0.642, 0.664, 0.695, 0.723, 0.756])
+#
+#     # corresponding CT values
+#     CP_data = np.array([0.0412, 0.0414, 0.0419, 0.0420, 0.0420, 0.0419, 0.0418, 0.0411, 0.0403, 0.0390, 0.0373, 0.0331, 0.0307, 0.0267, 0.0245, 0.0242, 0.0205, 0.0185, 0.0154, 0.0126, 0.0089])
+#
+#     CQ_data = CP_data / (2 * np.pi)
+#
+#     return interp1d(J_data, CQ_data, kind='quadratic', fill_value='extrapolate')(J)
+
+def CT(J): # Currently for the APC 16x8 8000 RPM, https://m-selig.ae.illinois.edu/props/volume-1/propDB-volume-1.html
     # advance ratio
-    J_data = np.array([0.185, 0.210, 0.245, 0.276, 0.306, 0.335, 0.364, 0.399, 0.429, 0.456, 0.481, 0.521, 0.545, 0.576, 0.600, 0.603, 0.642, 0.664, 0.695, 0.723, 0.756])
+    J_data = np.array([0.000e+00, 2.320e-02, 4.630e-02, 6.950e-02, 9.260e-02, 1.158e-01,
+     1.389e-01, 1.621e-01, 1.852e-01, 2.084e-01, 2.315e-01, 2.547e-01,
+     2.778e-01, 3.010e-01, 3.242e-01, 3.473e-01, 3.705e-01, 3.936e-01,
+     4.168e-01, 4.399e-01, 4.631e-01, 4.862e-01, 5.094e-01, 5.325e-01,
+     5.557e-01, 5.788e-01, 6.020e-01, 6.251e-01, 6.483e-01, 6.715e-01])
 
     # corresponding CT values
-    CT_data = np.array([0.0893, 0.0875, 0.0852, 0.0826, 0.0797, 0.0768, 0.0737, 0.0691, 0.0648, 0.0601, 0.0550, 0.0448, 0.0397, 0.0401, 0.0322, 0.0273, 0.0201, 0.0163, 0.0108, 0.0058, -0.0005])
+    CT_data = np.array([9.880e-02, 9.710e-02, 9.530e-02, 9.340e-02, 9.140e-02, 8.920e-02,
+     8.690e-02, 8.440e-02, 8.170e-02, 7.890e-02, 7.600e-02, 7.280e-02,
+     6.960e-02, 6.620e-02, 6.260e-02, 5.900e-02, 5.520e-02, 5.130e-02,
+     4.740e-02, 4.330e-02, 3.920e-02, 3.500e-02, 3.070e-02, 2.640e-02,
+     2.200e-02, 1.760e-02, 1.320e-02, 8.800e-03, 4.300e-03, -2.000e-04])
 
     return interp1d(J_data, CT_data, kind='quadratic', fill_value='extrapolate')(J)
 
-def CQ(J): # Currently for the apce_19x12 at 2500 RPM, https://m-selig.ae.illinois.edu/props/volume-1/propDB-volume-1.html
+def CQ(J): # Currently for the APC 16x8 8000 RPM, https://m-selig.ae.illinois.edu/props/volume-1/propDB-volume-1.html
     # advance ratio
-    J_data = np.array([0.185, 0.210, 0.245, 0.276, 0.306, 0.335, 0.364, 0.399, 0.429, 0.456, 0.481, 0.521, 0.545, 0.576, 0.600, 0.603, 0.642, 0.664, 0.695, 0.723, 0.756])
-
+    J_data = np.array([0.000e+00, 2.320e-02, 4.630e-02, 6.950e-02, 9.260e-02, 1.158e-01,
+     1.389e-01, 1.621e-01, 1.852e-01, 2.084e-01, 2.315e-01, 2.547e-01,
+     2.778e-01, 3.010e-01, 3.242e-01, 3.473e-01, 3.705e-01, 3.936e-01,
+     4.168e-01, 4.399e-01, 4.631e-01, 4.862e-01, 5.094e-01, 5.325e-01,
+     5.557e-01, 5.788e-01, 6.020e-01, 6.251e-01, 6.483e-01, 6.715e-01])
     # corresponding CT values
-    CP_data = np.array([0.0412, 0.0414, 0.0419, 0.0420, 0.0420, 0.0419, 0.0418, 0.0411, 0.0403, 0.0390, 0.0373, 0.0331, 0.0307, 0.0267, 0.0245, 0.0242, 0.0205, 0.0185, 0.0154, 0.0126, 0.0089])
+    CP_data = np.array([3.280e-02, 3.330e-02, 3.360e-02, 3.400e-02, 3.420e-02, 3.440e-02,
+     3.460e-02, 3.460e-02, 3.460e-02, 3.450e-02, 3.420e-02, 3.380e-02,
+     3.340e-02, 3.280e-02, 3.200e-02, 3.110e-02, 3.010e-02, 2.900e-02,
+     2.770e-02, 2.630e-02, 2.480e-02, 2.310e-02, 2.120e-02, 1.930e-02,
+     1.710e-02, 1.490e-02, 1.250e-02, 9.900e-03, 7.300e-03, 4.400e-03])
 
     CQ_data = CP_data / (2 * np.pi)
 
@@ -373,14 +336,14 @@ battery = Battery(
 esc = ESC(I_max=60) # ESC max current
 
 motor = Motor(
-    Kv=380,         # RPM/Volt value
-    R=0.05,         # Internal resistance
-    I_max=75,       # Max current
-    P_max=1800      # Max power
+    Kv=540,         # RPM/Volt value
+    R=14e-3,         # Internal resistance
+    I_max=85,       # Max current
+    P_max=2000      # Max power
 )
 
 prop = Propeller(
-    D=0.48,         # Diameter [m]
+    D=0.4064,         # Diameter [m]
     CT_func=CT,     # Thrust coefficient curve
     CQ_func=CQ      # Torque coefficient curve
 )
@@ -391,7 +354,7 @@ sim = MissionSimulator(aircraft, motor, esc, prop, battery)
 # RUN MISSION
 # =====================
 print("Starting sim")
-takeoff = sim.simulate_takeoff(dt=0.02, alpha_TO=10)
+takeoff = sim.simulate_takeoff(dt=0.02, alpha_TO=10, full_power=False)
 print("Take-off done")
 # climb = sim.simulate_climb(h_target=120, V=takeoff[-1]["V"], T0=takeoff[-1]["t"])
 #climb = sim.simulate_climb_steady(h_target=120, T0=takeoff[-1]["t"], alpha_climb=10)
@@ -414,13 +377,13 @@ soc   = np.array([r["soc"] for r in mission])
 alpha = np.array([r["alpha"] for r in mission])
 
 plots = [
-    (h, "Altitude [m]"),
+    #(h, "Altitude [m]"),
     (x, "Distance [m]"),
-    (V, "Velocity [m/s]"),
-    (T, "Thrust [N]"),
+    #(V, "Velocity [m/s]"),
+    #(T, "Thrust [N]"),
     (P, "Power [W]"),
-    (soc, "SOC [-]"),
-    (alpha, "Angle of Attack [deg]")
+    #(soc, "SOC [-]"),
+    #(alpha, "Angle of Attack [deg]")
 ]
 
 for y, label in plots:
