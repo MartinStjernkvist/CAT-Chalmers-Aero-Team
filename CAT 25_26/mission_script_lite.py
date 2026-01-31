@@ -78,6 +78,7 @@ def takeoff(l_runway):
     print(f'\ndrag during take-off: \n{D_takeoff:.2f}')
 
     F_fric = mu * L
+    print(f'\nfriction force: \n{F_fric:.2f} N')
 
     a_takeoff = v_takeoff**2 / (2 * l_runway)
     print(f'\nacceleration at take-off: \n{a_takeoff:.2f} m/s^2')
