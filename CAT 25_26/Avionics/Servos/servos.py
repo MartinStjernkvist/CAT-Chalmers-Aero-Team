@@ -1,3 +1,4 @@
+#%%
 import numpy as np
 import math
 import sympy as sp
@@ -132,3 +133,4 @@ fig(title)
 print((1/(np.sqrt(2)) - 4/3 * np.cos(np.pi / 3))**2)
 print((-1/np.sqrt(2) + 4/3 * np.sin(np.pi/3))**2)
 print(((1/(np.sqrt(2)) - 4/3 * np.cos(np.pi / 3))**2 + (-1/np.sqrt(2) + 4/3 * np.sin(np.pi/3))**2)*9)
+#%%
