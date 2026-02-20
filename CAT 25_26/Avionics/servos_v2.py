@@ -23,7 +23,7 @@ NM_TO_KGCM = 10.2     # Conversion: Newton-meters to kg-cm
 
 # Plane Parameters (Matches your servos.py)
 params = {
-    'L': 0.464, # Control surface length (meters)
+    'L': 2 * 0.464, # Control surface length (meters)
     'C': 0.0534, # Control surface chord (meters)
     'V': 20.6, # Airspeed (m/s)
 }
