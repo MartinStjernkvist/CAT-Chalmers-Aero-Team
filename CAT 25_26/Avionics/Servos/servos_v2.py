@@ -243,7 +243,7 @@ params = {
 }
 
 s_min = 5
-s_max = 40
+s_max = 50
 c_min = 5
 c_max = 40
 
