@@ -181,6 +181,50 @@ def visualize_servo_geometry():
     plt.tight_layout()
     plt.show()
     
+def plot_linearised_torque(s_min, s_max, c_min, c_max, params):
+    s_angles = np.linspace(s_min, s_max, 100)
+    
+    # Calculate the linearly mapped control surface angles
+    slope = (c_max - c_min) / (s_max - s_min)
+    c_angles = c_min + slope * (s_angles - s_min)
+    
+    # Calculate torques using the existing vectorized function
+    torques_conservative = calculate_servo_torque(s_angles, c_angles, params, use_dynamic_cd=False)
+    torques_dynamic = calculate_servo_torque(s_angles, c_angles, params, use_dynamic_cd=True)
+    
+    plt.figure()
+    
+    # We plot against the Control Surface Deflection for intuition, 
+    # but you could easily swap 'c_angles' for 's_angles' if you prefer tracking the servo.
+    plt.plot(c_angles, torques_conservative, linestyle='--', color='red',
+             label='Conservative (Cd=1.0)')
+    plt.plot(c_angles, torques_dynamic, linestyle='-', linewidth=2, color='blue',
+             label='Dynamic Cd')
+    
+    plt.title(f"Operational Torque Curve\nServo: {s_min}° to {s_max}°, Surface: {c_min}° to {c_max}°")
+    plt.xlabel("Control Surface Deflection (degrees)")
+    plt.ylabel("Torque required (kg-cm)")
+    
+    # Adding a secondary X-axis to show the corresponding Servo Angle
+    ax1 = plt.gca()
+    ax2 = ax1.twiny()
+    ax2.set_xlim(ax1.get_xlim())
+    
+    # Set the ticks for the top axis to match the servo angles
+    tick_locs = ax1.get_xticks()
+
+    valid_ticks = [t for t in tick_locs if c_min <= t <= c_max]
+    mapped_servo_ticks = [s_min + (t - c_min) / slope for t in valid_ticks]
+    
+    ax2.set_xticks(valid_ticks)
+    ax2.set_xticklabels([f"{st:.1f}°" for st in mapped_servo_ticks])
+    ax2.set_xlabel("Corresponding Servo Angle")
+
+    ax1.grid(True, alpha=0.3)
+    ax1.legend(loc='upper left')
+    plt.tight_layout()
+    plt.show()
+    
     
 #%%
 ####################################################################################################
@@ -195,15 +239,20 @@ def visualize_servo_geometry():
 params = {
     'L': 2 * 0.464, # Control surface length (meters)
     'C': 0.0534, # Control surface chord (meters)
-    'V': 25, # Airspeed (m/s)
+    'V': 30, # Airspeed (m/s)
 }
 
-servo_angles = np.linspace(10, 60, 100)
-    
-# Different control surface deflections
-control_deflections = [5, 15, 30, 45]
+s_min = 5
+s_max = 40
+c_min = 5
+c_max = 40
+
+servo_angles = np.linspace(s_min, s_max, 100)
+control_deflections = np.linspace(c_min, c_max, 5)
 
 plot_torque_requirements(servo_angles, control_deflections)
+plot_linearised_torque(s_min, s_max, c_min, c_max, params=params)
+
 # plot_torque_multiplier_verification()
-visualize_servo_geometry()
+# visualize_servo_geometry()
 #%%
