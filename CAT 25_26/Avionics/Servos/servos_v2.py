@@ -225,6 +225,46 @@ def plot_linearised_torque(s_min, s_max, c_min, c_max, params):
     plt.tight_layout()
     plt.show()
     
+def plot_kinematic_torque(s_max, c_max, params):
+    
+    s_angles = np.linspace(1, s_max, 100)
+    
+    # Calculate the mechanical linkage ratio (Rs/Rc) required to achieve the max throws
+    K = np.sin(np.deg2rad(c_max)) / np.sin(np.deg2rad(s_max))
+    
+    # Calculate true non-linear control surface angles
+    c_angles_rad = np.arcsin(K * np.sin(np.deg2rad(s_angles)))
+    c_angles = np.rad2deg(c_angles_rad)
+    
+    # Calculate torques using the existing vectorized function
+    torques_conservative = calculate_servo_torque(s_angles, c_angles, params, use_dynamic_cd=False)
+    torques_dynamic = calculate_servo_torque(s_angles, c_angles, params, use_dynamic_cd=True)
+    
+    fig, ax1 = plt.subplots()
+    
+    ax1.plot(s_angles, torques_conservative, linestyle='--', color='red',
+             label='Torque (Conservative Cd=1.0)')
+    ax1.plot(s_angles, torques_dynamic, linestyle='-', linewidth=2, color='blue',
+             label='Torque (Dynamic Cd)')
+    
+    ax1.set_title(f"True Kinematic Torque Curve\nMax Servo: {s_max}°, Max Surface: {c_max}°")
+    ax1.set_xlabel("Servo Angle (degrees)")
+    ax1.set_ylabel("Torque required (kg-cm)")
+    
+    # Secondary Y-axis to visualize the non-linear angle mapping
+    ax2 = ax1.twinx()
+    ax2.plot(s_angles, c_angles, 'k:', linewidth=2, alpha=0.6, label='Control Surface Angle')
+    ax2.set_ylabel("True Control Surface Deflection (°)", color='k', alpha=0.8)
+    ax2.tick_params(axis='y', labelcolor='k')
+    
+    lines_1, labels_1 = ax1.get_legend_handles_labels()
+    lines_2, labels_2 = ax2.get_legend_handles_labels()
+    ax1.legend(lines_1 + lines_2, labels_1 + labels_2, loc='upper left')
+    
+    ax1.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.show()
+    
     
 #%%
 ####################################################################################################
@@ -242,9 +282,9 @@ params = {
     'V': 30, # Airspeed (m/s)
 }
 
-s_min = 5
+s_min = 1
 s_max = 50
-c_min = 5
+c_min = 1
 c_max = 40
 
 servo_angles = np.linspace(s_min, s_max, 100)
@@ -252,6 +292,7 @@ control_deflections = np.linspace(c_min, c_max, 5)
 
 plot_torque_requirements(servo_angles, control_deflections)
 plot_linearised_torque(s_min, s_max, c_min, c_max, params=params)
+plot_kinematic_torque(s_max, c_max, params=params)
 
 # plot_torque_multiplier_verification()
 # visualize_servo_geometry()
