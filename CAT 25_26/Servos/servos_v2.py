@@ -210,7 +210,7 @@ def plot_linearised_torque(s_min, s_max, c_min, c_max, params):
     plt.plot(c_angles, torques_dynamic, linestyle='-', linewidth=2, color='blue',
              label='Dynamic Cd')
     
-    plt.title(f"Operational Torque Curve\nServo: {s_min}° to {s_max}°, Surface: {c_min}° to {c_max}°")
+    plt.title(f"Operational Torque Curve\nServo: {s_min}° to {s_max}°, Surface: {c_min}° to {c_max}° \n(V={params['V']} m/s, L={params['L']}m, C={params['C']}m)")
     plt.xlabel("Control Surface Deflection (degrees)")
     plt.ylabel("Torque required (kg-cm)")
     
@@ -257,7 +257,7 @@ def plot_kinematic_torque(s_max, c_max, params):
     ax1.plot(s_angles, torques_dynamic, linestyle='-', linewidth=2, color='blue',
              label='Torque (Dynamic Cd)')
     
-    ax1.set_title(f"True Kinematic Torque Curve\nMax Servo: {s_max}°, Max Surface: {c_max}°")
+    ax1.set_title(f"True Kinematic Torque Curve\nMax Servo: {s_max}°, Max Surface: {c_max}° \n(V={params['V']} m/s, L={params['L']}m, C={params['C']}m)")
     ax1.set_xlabel("Servo Angle (degrees)")
     ax1.set_ylabel("Torque required (kg-cm)")
     
