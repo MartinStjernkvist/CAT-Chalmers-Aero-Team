@@ -1,11 +1,19 @@
 #%%
 import numpy as np
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 SMALL_SIZE = 10
 MEDIUM_SIZE = 12
 BIGGER_SIZE = 14
 dpi = 500
+
+script_dir = Path(__file__).parent
+
+def sfig(fig_name):
+    fig_output_file = script_dir / "figures" / fig_name
+    fig_output_file.parent.mkdir(parents=True, exist_ok=True)
+    plt.savefig(fig_output_file, dpi=dpi, bbox_inches='tight')
 
 plt.rc('font', size=SMALL_SIZE)
 plt.rc('axes', titlesize=BIGGER_SIZE)
@@ -66,6 +74,7 @@ def plot_torque_requirements(servo_angles, control_deflections):
     plt.grid(True, alpha=0.3)
     plt.legend()
     plt.tight_layout()
+    sfig('Servo Torque Required')
     plt.show()
     
     # Case: 45 deg deflection, 45 deg servo, Cd=1.0
@@ -223,6 +232,7 @@ def plot_linearised_torque(s_min, s_max, c_min, c_max, params):
     ax1.grid(True, alpha=0.3)
     ax1.legend(loc='upper left')
     plt.tight_layout()
+    sfig('Operational Torque Curve')
     plt.show()
     
 def plot_kinematic_torque(s_max, c_max, params):
@@ -263,6 +273,7 @@ def plot_kinematic_torque(s_max, c_max, params):
     
     ax1.grid(True, alpha=0.3)
     plt.tight_layout()
+    sfig('True Kinematic Torque Curve')
     plt.show()
     
     
