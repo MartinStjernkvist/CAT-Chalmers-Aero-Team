@@ -287,12 +287,27 @@ def plot_kinematic_torque(s_max, c_max, params):
 # Do not just look at maximum value.
 # We want max deflection of control surface at max deflection of servo.
 
+# Tail elevators
 params = {
-    'L': 2 * 0.464, # Control surface length (meters)
+    'L': 1.069, # Control surface length (meters)
     'C': 0.0534, # Control surface chord (meters)
     'V': 30, # Airspeed (m/s)
 }
-
+#%%
+# Tail rudder
+params = {
+    'L': 0.464,
+    'C': 0.0534,
+    'V': 30,
+}
+#%%
+# Wing aileron
+params = {
+    'L': 1.19 - 0.7,
+    'C': 0.0534,
+    'V': 30,
+}
+#%%
 s_min = 1
 s_max = 50
 c_min = 1
