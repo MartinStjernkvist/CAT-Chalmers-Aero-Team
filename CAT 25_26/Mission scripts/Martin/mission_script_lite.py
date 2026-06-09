@@ -14,18 +14,18 @@ rho_air = 1.225 # kg/m^3
 # Lift
 # http://airfoiltools.com/airfoil/details?airfoil=s1223-il
 L = m * g
-L_D_ratio = 9
+L_D_ratio = 8
 CL_max = 1.8
-CD = 0.05
+CD = 0.06
 
 # wing geometry
 wingspan = 2.5
-chord = 0.345
+chord = 0.387
 
 # take-off
-takeoff_margin = 0.1 # above stall speed
-mu = 0.3 # damp grass & rubber
-l_runway_straigt = 20
+takeoff_margin = 0.1 # above stall speed, 0.1 = 10%
+mu = 0.3 # friction coefficient, damp grass & rubber
+l_runway_straigt = 20 # runway length
 l_runway_diagonal = np.sqrt(2 * l_runway_straigt**2)
 
 # for g/W method
@@ -35,12 +35,13 @@ thrust_to_weight_takeoff = 0.5
 battery_cap_Ah = 6 # Ah
 voltage = 22.2 # V
 battery_cap_Wh = battery_cap_Ah * voltage
-leftover_cap_factor = 0.2
+leftover_cap_factor = 0.2 # remaining battery capacity
 
 # Efficiencies
 eta_batteries = 0.8
 eta_prop = 0.6
 eta_motor_ESC = 0.85
+
 eta_motor_takeoff = 4.10 # g/W, 90% throttle
 e = 0.8 # Oswald efficiency, rectangular wing
 
@@ -48,8 +49,8 @@ e = 0.8 # Oswald efficiency, rectangular wing
 distance_lap = 2 * 2_800 # m
 
 # Cruise speeds
-v_cruise_slow = 12.5 # m/s
-v_cruise_fast = 20
+v_cruise_slow = 15 # m/s
+v_cruise_fast = 18
 v_wind = 20 * 0.4
 
 #===================================================================================================
