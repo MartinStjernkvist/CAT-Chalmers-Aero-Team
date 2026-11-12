@@ -1,3 +1,4 @@
+#%%
 import numpy as np
 from drone import Drone
 from environment import Env
